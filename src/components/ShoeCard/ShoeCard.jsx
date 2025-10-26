@@ -14,16 +14,6 @@ const ShoeCard = ({
   releaseDate,
   numOfColors,
 }) => {
-  // There are 3 variants possible, based on the props:
-  //   - new-release
-  //   - on-sale
-  //   - default
-  //
-  // Any shoe released in the last month will be considered
-  // `new-release`. Any shoe with a `salePrice` will be
-  // on-sale. In theory, it is possible for a shoe to be
-  // both on-sale and new-release, but in this case, `on-sale`
-  // will triumph and be the variant used.
   // prettier-ignore
   const variant = typeof salePrice === 'number'
     ? 'on-sale'
@@ -77,11 +67,20 @@ const Wrapper = styled.article``;
 
 const ImageWrapper = styled.div`
   position: relative;
+  overflow: clip;
+  border-radius: 16px 16px 4px 4px;
+  line-height: 0;
 `;
 
 const Image = styled.img`
   width: 100%;
-  border-radius: 16px 16px 4px 4px;
+  transition: transform 800ms;
+  transform-origin: 50% 80%;
+
+  &:hover {
+    transform: scale(1.1);
+    transition: transform 150ms;
+  }
 `;
 
 const Row = styled.div`
@@ -121,6 +120,11 @@ const Flag = styled.div`
   font-weight: ${WEIGHTS.bold};
   color: var(--color-white);
   border-radius: 2px;
+  transition: filter 200ms;
+
+  ${ImageWrapper}:hover & {
+    filter: brightness(1.2);
+  }
 `;
 
 const SaleFlag = styled(Flag)`
