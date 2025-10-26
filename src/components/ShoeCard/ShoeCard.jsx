@@ -77,9 +77,11 @@ const Image = styled.img`
   transition: transform 800ms;
   transform-origin: 50% 80%;
 
-  &:hover {
-    transform: scale(1.1);
-    transition: transform 150ms;
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover {
+      transform: scale(1.1);
+      transition: transform 150ms;
+    }
   }
 `;
 

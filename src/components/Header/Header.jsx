@@ -52,6 +52,13 @@ const Header = () => {
   );
 };
 
+const NavLink = ({ children, ...props }) => {
+  return <NavLinkWrapper {...props}>
+    <NavLinkText>{children}</NavLinkText>
+    <HoverNavLink aria-hidden="true">{children}</HoverNavLink>
+  </NavLinkWrapper>;
+}
+
 const MainHeader = styled.div`
   display: flex;
   align-items: baseline;
@@ -114,16 +121,34 @@ const Filler = styled.div`
   }
 `;
 
-const NavLink = styled.a`
+const NavLinkWrapper = styled.a`
   font-size: 1.125rem;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
+  display: flex;
+  flex-direction: column;
+  overflow: clip;
+  height: 2rem;
 
   &:first-of-type {
     color: var(--color-secondary);
   }
+`;
+
+const NavLinkText = styled.span`
+  @media (prefers-reduced-motion: no-preference) {  
+    transition: transform 150ms;
+  }
+  
+  ${NavLinkWrapper}:hover & {
+    transform: translateY(-100%);
+  }
+`;
+
+const HoverNavLink = styled(NavLinkText)`
+  font-weight: ${WEIGHTS.bold};
 `;
 
 export default Header;
