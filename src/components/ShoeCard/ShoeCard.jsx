@@ -78,7 +78,7 @@ const Image = styled.img`
   transform-origin: 50% 80%;
 
   @media (prefers-reduced-motion: no-preference) {
-    &:hover {
+    ${Link}:hover &, ${Link}:focus & {
       transform: scale(1.1);
       transition: transform 150ms;
     }
@@ -124,7 +124,7 @@ const Flag = styled.div`
   border-radius: 2px;
   transition: filter 200ms;
 
-  ${ImageWrapper}:hover & {
+  ${Link}:hover &, ${Link}:focus & {
     filter: brightness(1.2);
   }
 `;

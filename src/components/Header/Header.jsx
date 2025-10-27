@@ -137,6 +137,10 @@ const NavLinkWrapper = styled.a`
   &:first-of-type {
     color: var(--color-secondary);
   }
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 const NavLinkText = styled.span`
@@ -144,7 +148,7 @@ const NavLinkText = styled.span`
     transition: transform 150ms;
   }
   
-  ${NavLinkWrapper}:hover & {
+  ${NavLinkWrapper}:hover &, ${NavLinkWrapper}:focus & {
     transform: translateY(-100%);
   }
 `;
@@ -166,7 +170,7 @@ const NavUnderline = styled.div`
   transition: transform 500ms, opacity 400ms;
 
   @media (prefers-reduced-motion: no-preference) {
-    ${NavLinkWrapper}:hover & {
+    ${NavLinkWrapper}:hover &, ${NavLinkWrapper}:focus & {
       transform: rotateX(0deg);
       opacity: 1;
     }
