@@ -56,6 +56,7 @@ const NavLink = ({ children, ...props }) => {
   return <NavLinkWrapper {...props}>
     <NavLinkText>{children}</NavLinkText>
     <HoverNavLink aria-hidden="true">{children}</HoverNavLink>
+    <NavUnderline />
   </NavLinkWrapper>;
 }
 
@@ -122,6 +123,7 @@ const Filler = styled.div`
 `;
 
 const NavLinkWrapper = styled.a`
+  position: relative;
   font-size: 1.125rem;
   text-transform: uppercase;
   text-decoration: none;
@@ -149,6 +151,26 @@ const NavLinkText = styled.span`
 
 const HoverNavLink = styled(NavLinkText)`
   font-weight: ${WEIGHTS.bold};
+`;
+
+const NavUnderline = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--color-secondary);
+  transform: rotateX(90deg);
+  opacity: 0;
+  transform-origin: 0 -100%;
+  transition: transform 500ms, opacity 400ms;
+
+  @media (prefers-reduced-motion: no-preference) {
+    ${NavLinkWrapper}:hover & {
+      transform: rotateX(0deg);
+      opacity: 1;
+    }
+  }
 `;
 
 export default Header;
