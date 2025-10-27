@@ -144,6 +144,7 @@ const NavLinkWrapper = styled.a`
 `;
 
 const NavLinkText = styled.span`
+  will-change: transform;
   @media (prefers-reduced-motion: no-preference) {  
     transition: transform 150ms;
   }
@@ -168,7 +169,7 @@ const NavUnderline = styled.div`
   opacity: 0;
   transform-origin: 0 -100%;
   transition: transform 500ms, opacity 400ms;
-
+  will-change: transform, opacity;
   @media (prefers-reduced-motion: no-preference) {
     ${NavLinkWrapper}:hover &, ${NavLinkWrapper}:focus & {
       transform: rotateX(0deg);
